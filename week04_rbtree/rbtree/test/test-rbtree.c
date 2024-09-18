@@ -323,6 +323,7 @@ void test_find_erase(rbtree *t, const key_t *arr, const size_t n) {
     assert(p != NULL);
     // assert(t -> nil -> parent == t -> nil); //activate
     assert(p->key == arr[i]);
+    assert(t -> nil != NULL);
     rbtree_erase(t, p);
   }
 

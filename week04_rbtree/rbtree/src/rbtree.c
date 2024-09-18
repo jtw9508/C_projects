@@ -153,7 +153,7 @@ int rbtree_erase(rbtree *t, node_t *p) {
   if (node_replace != t -> nil) {
     p -> key = node_replace -> key;
     delete_one_child(t, node_replace);
-    free(node_replace);
+    free(node_replace);    
   } else {
     if (p == t -> root) {
       t -> root = t -> nil;
@@ -382,7 +382,6 @@ void delete_one_child(rbtree *t, node_t *n) {
     } else {
       delete_case1(t, child);
     }
-    // free(n);
   }
 }
 //만약 부모가 nil이면 루트를 삭제한 것으로 종료. 아니라면 case2로 넘어감.
