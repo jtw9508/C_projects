@@ -1,0 +1,4 @@
+<html><title>Proxy Error</title><body bgcolor=ffffff>
+502: Bad Gateway
+<p>Proxy can not connect to the target server: localhost
+<hr><em>The Tiny Web server</em>

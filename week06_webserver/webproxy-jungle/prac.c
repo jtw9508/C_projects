@@ -20,7 +20,7 @@ int main() {
     memset(&sa, 0, sizeof(sa));
     sa.sin_family = AF_INET;
     sa.sin_port = htons(8080);
-    inet_pton(AF_INET, "192.168.1.1", &sa);
+    inet_pton(AF_INET, "192.168.1.1", &(sa.sin_addr));
 
     struct sockaddr *sa_ptr = (struct sockaddr *)&sa;
 

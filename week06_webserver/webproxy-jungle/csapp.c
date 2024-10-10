@@ -32,7 +32,9 @@
 void unix_error(char *msg) /* Unix-style error */
 {
     fprintf(stderr, "%s: %s\n", msg, strerror(errno));
+    // if (errno != EPIPE) {
     exit(0);
+    // }
 }
 /* $end unixerror */
 
@@ -782,7 +784,11 @@ ssize_t rio_writen(int fd, void *usrbuf, size_t n)
 	if ((nwritten = write(fd, bufp, nleft)) <= 0) {
 	    if (errno == EINTR)  /* Interrupted by sig handler return */
 		nwritten = 0;    /* and call write() again */
-	    else
+        else if (nwritten < 0 && errno == EPIPE) {  // Broken pipe
+            fprintf(stderr, "SIGPIPE 감지: 클라이언트가 연결을 닫음\n");
+            return -1;  // 오류 반환
+        }
+        else
 		return -1;       /* errno set by write() */
 	}
 	nleft -= nwritten;
